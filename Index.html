@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snigdha's Homoeo & Aesthetic Clinic | Nagpur</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    :root {
+      --primary: #581c87;
+      --primary-light: #f3e8ff;
+      --accent: #d97706;
+      --accent-gold: #d4af37;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --bg: #fcfaff;
+      --card-bg: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+    body { background-color: var(--bg); color: var(--dark); overflow-x: hidden; padding-bottom: 70px; }
+
+    /* Glassmorphism Header */
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 25px rgba(88, 28, 135, 0.06);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    }
+    .logo { font-size: 1.35rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .logo span { color: var(--accent); }
+
+    .btn-header-call {
+      background: linear-gradient(135deg, var(--primary), #7e22ce);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      box-shadow: 0 4px 15px rgba(88, 28, 135, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 50px 6% 40px;
+      text-align: center;
+      background: radial-gradient(circle at top, #f5e8ff 0%, var(--bg) 70%);
+    }
+    .badge {
+      background: #f3e8ff;
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 18px;
+      border: 1px solid #e9d5ff;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      color: var(--gray);
+      font-size: 0.98rem;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      line-height: 1.65;
+    }
+    .hero-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #7e22ce);
+      color: white;
+      width: 85%;
+      max-width: 290px;
+      padding: 15px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(88, 28, 135, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 1.5px solid #d8b4fe;
+      width: 85%;
+      max-width: 290px;
+      padding: 14px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Rating Card */
+    .rating-card {
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      max-width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border: 1px solid #f1f5f9;
+      text-align: center;
+    }
+    .rating-badge {
+      width: 44px;
+      height: 44px;
+      background: #fef3c7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    .rating-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+    .rating-card p { font-size: 0.85rem; color: var(--gray); margin-top: 2px; }
+    .stars { color: #f59e0b; margin: 8px 0 4px; font-size: 1rem; }
+    .rating-score { font-weight: 700; font-size: 1.1rem; }
+
+    /* Section Global Styles */
+    .section { padding: 45px 6%; max-width: 1100px; margin: auto; }
+    .section-title { text-align: center; font-size: 1.7rem; font-weight: 800; margin-bottom: 10px; color: var(--dark); }
+    .section-subtitle { text-align: center; font-size: 0.92rem; color: var(--gray); margin-bottom: 30px; }
+
+    /* Doctor Profile Card */
+    .doctor-card {
+      background: white;
+      border-radius: 24px;
+      padding: 30px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      border: 1px solid #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+    .doc-avatar {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--primary-light), #e9d5ff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+      border: 3px solid white;
+      box-shadow: 0 8px 20px rgba(88, 28, 135, 0.15);
+    }
+    .doc-info h3 { font-size: 1.3rem; font-weight: 800; color: var(--dark); }
+    .doc-info .title { color: var(--primary); font-weight: 600; font-size: 0.92rem; margin-top: 2px; }
+    .doc-info p { font-size: 0.88rem; color: var(--gray); margin-top: 10px; line-height: 1.6; }
+
+    /* Service Cards Grid */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .service-card {
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      transition: transform 0.3s;
+    }
+    .service-card h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .service-card ul { list-style: none; }
+    .service-card ul li { font-size: 0.92rem; color: #475569; padding: 7px 0; border-bottom: 1px dashed #f1f5f9; display: flex; align-items: center; gap: 8px; }
+    .service-card ul li:last-child { border-bottom: none; }
+    .service-card ul li i { color: var(--accent); font-size: 0.8rem; }
+
+    /* Why Choose Us Grid */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .why-card {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid #f1f5f9;
+      text-align: center;
+    }
+    .why-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 1.3rem;
+    }
+    .why-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .why-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+    /* 3-Step Process */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .step-card {
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid #f1f5f9;
+      position: relative;
+    }
+    .step-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-light);
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+    .step-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
+    .step-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
+
+    /* Timings Box */
+    .timing-card {
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid #f1f5f9;
+    }
+    .timing-item { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #f8fafc; font-size: 0.95rem; }
+    .timing-item:last-child { border-bottom: none; }
+    .day-name { font-weight: 600; color: #334155; }
+    .day-time { color: var(--primary); font-weight: 700; }
+
+    /* Live Google Map Container with Direct Link Overlay */
+    .map-wrapper {
+      position: relative;
+      margin-top: 25px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(88, 28, 135, 0.1);
+      border: 1px solid #e2e8f0;
+    }
+    .map-container {
+      width: 100%;
+      height: 340px;
+    }
+    .map-container iframe { width: 100%; height: 100%; border: 0; pointer-events: none; }
+    
+    .map-click-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.02);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 20px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .map-click-overlay:hover {
+      background: rgba(88, 28, 135, 0.08);
+    }
+    .map-badge-btn {
+      background: var(--primary);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Reviews */
+    .review-item {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+    .review-text { font-size: 0.9rem; color: #334155; line-height: 1.5; font-style: italic; }
+    .reviewer-name { font-weight: 700; font-size: 0.85rem; color: var(--primary); margin-top: 8px; }
+
+    /* FAQ Accordion */
+    .faq-item {
+      background: white;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #f1f5f9;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--dark);
+    }
+    .faq-answer {
+      padding: 0 20px 16px;
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--primary); }
+
+    /* Footer */
+    footer { background: #0f172a; color: white; text-align: center; padding: 45px 6% 30px; margin-top: 50px; }
+    footer h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    footer p { font-size: 0.88rem; color: #94a3b8; max-width: 500px; margin: 0 auto 20px; line-height: 1.6; }
+    
+    .btn-directions {
+      background: #2563eb;
+      color: white;
+      padding: 12px 26px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Fixed Bottom Direct Call Bar for Mobile */
+    .fixed-call-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 12px 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      z-index: 9999;
+      border-top: 1px solid #e2e8f0;
+    }
+    .fixed-call-btn {
+      background: linear-gradient(135deg, var(--primary), #7e22ce);
+      color: white;
+      width: 100%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(88, 28, 135, 0.3);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Snigdha's <span>Clinic</span></div>
+    <a href="tel:9175841923" class="btn-header-call"><i class="fas fa-phone"></i> Call Now</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">✨ Aesthetic Skin & Homeopathy Care</div>
+    <h1>Glow Naturally. Heal Completely.</h1>
+    <p>Advanced Aesthetic Skin, Hair & Laser Treatments combined with Holistic Homeopathic Solutions under experienced medical supervision.</p>
+    
+    <div class="hero-btns">
+      <a href="tel:9175841923" class="btn-primary"><i class="fas fa-calendar-check"></i> Call To Book Visit</a>
+      <a href="#services" class="btn-secondary">Explore Treatments</a>
+    </div>
+
+    <div class="rating-card" data-aos="zoom-in">
+      <div class="rating-badge"><i class="fas fa-award"></i></div>
+      <h3>Top Rated Clinic in Nagpur</h3>
+      <p>Duttawadi, Amravati Road</p>
+      <div class="stars">★★★★★</div>
+      <div class="rating-score">4.8 <span style="font-size:0.8rem; font-weight:normal; color:#64748b;">(Verified Google Reviews)</span></div>
+    </div>
+  </section>
+
+  <!-- Doctor Profile Section -->
+  <section class="section">
+    <div class="doctor-card" data-aos="fade-up">
+      <div class="doc-avatar">
+        <i class="fas fa-user-md"></i>
+      </div>
+      <div class="doc-info">
+        <h3>Expert Medical Care</h3>
+        <div class="title">Homoeopathy & Aesthetic Specialist</div>
+        <p>Providing personalized skin, hair, and chronic illness treatments by combining pure homeopathic principles with modern aesthetic procedures for gentle, effective, and long-lasting results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section">
+    <h2 class="section-title" data-aos="fade-up">Why Patients Trust Us</h2>
+    <p class="section-subtitle">Dedicated care tailored specifically for your health & skin needs</p>
+    
+    <div class="why-grid">
+      <div class="why-card" data-aos="fade-up">
+        <div class="why-icon"><i class="fas fa-leaf"></i></div>
+        <h4>100% Safe Homeopathy</h4>
+        <p>Root-cause treatments with zero side effects for chronic health conditions.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+        <h4>Advanced Aesthetics</h4>
+        <p>State-of-the-art procedures for hair growth, facial glow, and skin rejuvenation.</p>
+      </div>
+
+      <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-icon"><i class="fas fa-user-check"></i></div>
+        <h4>Personalized Care</h4>
+        <p>Detailed consultation to understand your personal lifestyle and medical history.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <h2 class="section-title" data-aos="fade-up">Our Specializations</h2>
+    <p class="section-subtitle">Comprehensive Skin, Hair & Wellness Solutions</p>
+
+    <div class="services-grid">
+      
+      <div class="service-card" data-aos="fade-up">
+        <h3><i class="fas fa-wand-magic-sparkles"></i> Facials & Peels</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Hydrafacial, Medifacial & Carbon Facial</li>
+          <li><i class="fas fa-circle"></i> Vampire Facial & Oxygenofacials</li>
+          <li><i class="fas fa-circle"></i> Deep Skin Peelings & Polishing</li>
+          <li><i class="fas fa-circle"></i> Anti-aging & Skin Brightening</li>
+        </ul>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <h3><i class="fas fa-microchip"></i> Laser & Advanced Care</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Laser Hair Removal</li>
+          <li><i class="fas fa-circle"></i> Laser Light & Skin Therapy</li>
+          <li><i class="fas fa-circle"></i> MNRF (Microneedling)</li>
+          <li><i class="fas fa-circle"></i> Pigmentation & Scar Reduction</li>
+          <li><i class="fas fa-circle"></i> Mole, Tattoo & Corn Removal</li>
+        </ul>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <h3><i class="fas fa-spa"></i> Hair & Body Aesthetics</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> PRP Therapy (Hair & Face)</li>
+          <li><i class="fas fa-circle"></i> Hair Fall & Dandruff Control</li>
+          <li><i class="fas fa-circle"></i> Body Polishing & Mesotherapy</li>
+          <li><i class="fas fa-circle"></i> CoolSculpting & Skin Tightening</li>
+        </ul>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <h3><i class="fas fa-seedling"></i> Pure Homoeopathy</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Eczema, Psoriasis & Allergy Cure</li>
+          <li><i class="fas fa-circle"></i> Alopecia & Hair Loss Solutions</li>
+          <li><i class="fas fa-circle"></i> Chronic Illness Root-Cause Treatment</li>
+          <li><i class="fas fa-circle"></i> Hyperpigmentation Management</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Patient Journey Steps -->
+  <section class="section">
+    <h2 class="section-title" data-aos="fade-up">How We Treat You</h2>
+    <p class="section-subtitle">Simple 3-step approach to natural healing & aesthetic transformation</p>
+
+    <div class="steps-grid">
+      <div class="step-card" data-aos="fade-up">
+        <span class="step-number">01</span>
+        <h4>Detailed Consultation</h4>
+        <p>We analyze your skin/hair condition or health history to find the underlying cause.</p>
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="step-number">02</span>
+        <h4>Customized Plan</h4>
+        <p>A tailored combination of homeopathic remedies or aesthetic procedures is prepared for you.</p>
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="step-number">03</span>
+        <h4>Natural Transformation</h4>
+        <p>Achieve visible improvements with complete patient guidance and continuous support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timings & Exact Interactive Live Map Section -->
+  <section class="section">
+    <h2 class="section-title" data-aos="fade-up">Visit Our Clinic</h2>
+    <p class="section-subtitle">Check timings or tap the map to open Google Navigation directly</p>
+
+    <div class="timing-card" data-aos="zoom-in">
+      <div class="timing-item">
+        <span class="day-name"><i class="far fa-clock" style="color:var(--primary);"></i> Sunday</span>
+        <span class="day-time">11:00 AM – 02:00 AM</span>
+      </div>
+      <div class="timing-item"><span class="day-name">Monday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+      <div class="timing-item"><span class="day-name">Tuesday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+      <div class="timing-item"><span class="day-name">Wednesday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+      <div class="timing-item"><span class="day-name">Thursday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+      <div class="timing-item"><span class="day-name">Friday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+      <div class="timing-item"><span class="day-name">Saturday</span><span class="day-time">12:30 PM – 09:00 PM</span></div>
+    </div>
+
+    <!-- Exact Location Interactive Google Map -->
+    <div class="map-wrapper" data-aos="fade-up">
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=Snigdha's%20Homoeo%20and%20Aesthetic%20Clinic%20Duttawadi%20Nagpur&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <a href="https://maps.google.com/?q=Snigdha's+Homoeo+and+Aesthetic+Clinic+Duttawadi+Nagpur" target="_blank" class="map-click-overlay">
+        <div class="map-badge-btn"><i class="fas fa-location-dot"></i> Click to Open in Google Maps</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Got questions? We have answers.</p>
+
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do I need a prior appointment before visiting?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Prior appointment is recommended so you don't have to wait in line. You can directly call us at <b>+91 9175841923</b> to book your slot.
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Are aesthetic treatments safe for all skin types?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes! All facial, peel, and laser treatments are conducted after a thorough assessment of your skin type to ensure maximum safety and effective results.
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Can homeopathy be taken along with aesthetic treatments?
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Absolutely. Combining homeopathic internal treatment with aesthetic procedures provides faster, root-cause healing alongside external skin glowing results.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Patient Reviews -->
+  <section class="section">
+    <h2 class="section-title" data-aos="fade-up">Patient Feedback</h2>
+    
+    <div class="review-item" data-aos="fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"I had a wonderful experience. The doctor is very kind, patient, and genuinely listens to every concern before starting treatment..."</p>
+      <div class="reviewer-name">- Pranjali Tembhekar</div>
+    </div>
+
+    <div class="review-item" data-aos="fade-up" data-aos-delay="100">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"The consultation was very thorough. I noticed a positive effect after just one course of medicine. Highly recommended!"</p>
+      <div class="reviewer-name">- Udaya Lanjewar</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+      <a href="https://maps.google.com/?q=Snigdha's+Homoeo+and+Aesthetic+Clinic+Duttawadi+Nagpur" target="_blank" class="btn-secondary" style="display:inline-block; width:auto; padding:12px 28px;">View Reviews on Google <i class="fas fa-external-link-alt" style="margin-left:5px; font-size:0.8rem;"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Snigdha's Homoeo & Aesthetic Clinic</h3>
+    <p>Shop No.1, Sadachar Society, Amravati Rd, Opposite Sadachar Bhawan, Near Balaji Sonography, Duttawadi, Nagpur, Wadi, Maharashtra 440023</p>
+    
+    <a href="https://maps.google.com/?q=Snigdha's+Homoeo+and+Aesthetic+Clinic+Duttawadi+Nagpur" target="_blank" class="btn-directions">
+      <i class="fas fa-location-arrow"></i> Open Directions in Google Maps
+    </a>
+    
+    <p style="margin-top: 25px; font-size: 0.78rem; opacity: 0.5;">© 2026 Snigdha's Clinic. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Fixed Bottom Bar for Instant Calling -->
+  <div class="fixed-call-bar">
+    <a href="tel:9175841923" class="fixed-call-btn">
+      <i class="fas fa-phone-alt"></i> Call Doctor: +91 9175841923
+    </a>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    function toggleFaq(element) {
+      const parent = element.parentElement;
+      parent.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
